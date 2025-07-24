@@ -1,0 +1,176 @@
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffdada;
+  color: #333;
+}
+
+/* Logo */
+#logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  z-index: 10;
+  object-fit: cover;
+}
+
+/* Hero Section */
+#hero {
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  color: white;
+  padding: 100px 20px 50px;
+  position: relative;
+}
+
+/* Banner Carousel */
+#banner {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.banner-images {
+  display: flex;
+  width: calc(10 * 100% / 5); /* 10 images (5 original + 5 repeat) */
+  animation: slideBanner 30s linear infinite;
+}
+
+.banner-images img {
+  width: 20%;
+  height: 100%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: 5px;
+}
+
+@keyframes slideBanner {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Hero Content */
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+#hero h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+#hero p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+#shop-now-btn {
+  background-color: #d63384;
+  color: white;
+  padding: 15px 30px;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: background-color 0.3s ease;
+}
+
+#shop-now-btn:hover {
+  background-color: #b62d71;
+}
+
+/* Categories Section */
+#categories {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 20px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+#categories-heading {
+  width: 100%;
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.category {
+  position: relative;
+  width: 23%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.category img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.category:hover img {
+  transform: scale(1.05);
+}
+
+.category-info {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.category:hover .category-info {
+  opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #categories {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .category {
+    width: 80%;
+    height: 300px;
+    margin-bottom: 20px;
+  }
+
+  #hero h1 {
+    font-size: 2rem;
+  }
+
+  #shop-now-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}

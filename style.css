@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: sans-serif;
+  font-family: bebop;
   background-color: #ffdada;
   color: #333;
 }
@@ -169,7 +169,7 @@ body {
 /* Responsive */
 @media (max-width: 768px) {
   .banner-images {
-    animation: none;
+    animation: slideBanner 30s linear infinite;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;

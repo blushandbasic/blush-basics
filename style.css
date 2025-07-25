@@ -1,3 +1,4 @@
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -5,204 +6,124 @@
 }
 
 body {
-  font-family: bebop;
-  background-color: #ffdada;
+  font-family: Arial, sans-serif;
+  background-color: #fff0f5;
   color: #333;
 }
 
-/* Logo */
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
 #logo {
-  position: absolute;
-  top: 15px;
-  left: 10px;
-  width: 60px;
   height: 60px;
+  width: 60px;
   border-radius: 50%;
-  object-fit: cover;
-  z-index: 10;
 }
 
 /* Auth Buttons */
 .auth-buttons {
-  position: absolute;
-  top: 15px;
-  right: 10px;
-  z-index: 10;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
+  gap: 10px;
 }
 
 .auth-buttons button {
-  background-color: #d63384;
+  background-color: #b62d71;
   color: white;
   border: none;
-  border-radius: 30px;
-  padding: 10px 15px;
-  margin: 5px;
+  padding: 8px 12px;
+  border-radius: 8px;
   cursor: pointer;
 }
 
-.auth-buttons button:hover {
-  background-color: #b62d71;
+#settingsBtn {
+  font-size: 20px;
+  background: none;
+  border: none;
+  color: #b62d71;
+  cursor: pointer;
 }
 
 /* Hero Section */
 #hero {
   text-align: center;
-  padding: 100px 20px 50px;
-  position: relative;
+  padding: 40px 20px;
+  background: #fff0f5;
 }
 
 #banner {
-  width: 100%;
-  height: 450px;
   overflow: hidden;
-  margin-bottom: 30px;
+  width: 100%;
 }
 
 .banner-images {
   display: flex;
-  width: calc(10 * 100% / 5);
-  animation: slideBanner 30s linear infinite;
+  animation: scrollBanner 30s linear infinite;
 }
 
 .banner-images img {
-  width: 20%;
-  height: 100%;
-  object-fit: cover;
-  flex-shrink: 0;
-  border-radius: 5px;
+  width: 100vw;
+  max-width: 100%;
 }
 
-@keyframes slideBanner {
+@keyframes scrollBanner {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  100% { transform: translateX(-200%); }
 }
 
 .hero-content {
-  z-index: 1;
-}
-
-#hero h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
-}
-
-#hero p {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 #shop-now-btn {
-  background-color: #d63384;
-  color: white;
-  padding: 15px 30px;
-  font-size: 1rem;
-  text-decoration: none;
-  border-radius: 30px;
-  transition: background-color 0.3s ease;
-}
-
-#shop-now-btn:hover {
   background-color: #b62d71;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 15px;
 }
 
-/* Categories */
+/* Categories Section */
 #categories {
-  display: flex;
-  justify-content: space-between;
-  margin: 50px 20px;
-  flex-wrap: wrap;
-  gap: 20px;
+  padding: 40px 20px;
+  text-align: center;
+  background-color: #fff0f5;
 }
 
 #categories-heading {
-  width: 100%;
-  text-align: center;
   font-size: 2rem;
   margin-bottom: 30px;
+  color: #b62d71;
 }
 
 .category {
-  width: 23%;
-  height: 200px;
-  overflow: hidden;
-  border-radius: 10px;
+  display: inline-block;
+  margin: 10px;
+  width: 150px;
   cursor: pointer;
-  position: relative;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease;
+  vertical-align: top;
 }
 
 .category img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-  transition: transform 0.3s ease-in-out;
-}
-
-.category:hover img {
-  transform: scale(1.05);
+  height: auto;
+  border-radius: 15px;
 }
 
 .category-info {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1.5rem;
+  margin-top: 10px;
   font-weight: bold;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 10px 20px;
-  border-radius: 5px;
-  opacity: 0;
-  transition: opacity 0.3s;
+  color: #b62d71;
 }
 
-.category:hover .category-info {
-  opacity: 1;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .banner-images {
-    display: flex;
-    width: calc(10 * 100% / 5);
-    animation: slideBanner 30s linear infinite;
-  }
-
-  .banner-images img {
-    width: 100vw;
-    height: 100%;
-    object-fit: cover;
-    flex-shrink: 0;
-    border-radius: 5px;
-  }
-
-  .hero-content {
-    margin-top: -30px;
-  }
-
-  #categories {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .category {
-    width: 80%;
-    height: 300px;
-    margin-bottom: 20px;
-  }
-
-  #hero h1 {
-    font-size: 2rem;
-  }
-
-  #shop-now-btn {
-    padding: 10px 20px;
-    font-size: 0.9rem;
-  }
+.category:hover {
+  transform: scale(1.05);
 }

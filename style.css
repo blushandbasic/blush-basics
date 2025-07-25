@@ -169,16 +169,17 @@ body {
 /* Responsive */
 @media (max-width: 768px) {
   .banner-images {
+    display: flex;
+    width: calc(10 * 100% / 5);
     animation: slideBanner 30s linear infinite;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
   }
 
   .banner-images img {
     width: 100vw;
-    height: auto;
-    scroll-snap-align: start;
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border-radius: 5px;
   }
 
   .hero-content {

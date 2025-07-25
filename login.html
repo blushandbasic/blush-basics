@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blush & Basics</title>
+  <link rel="icon" type="image/png" href="./logo.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Logo -->
+  <img src="./logo.png" alt="Blush & Basics Logo" id="logo"/>
+
+  <!-- Login/Logout Buttons -->
+  <div style="position: absolute; top: 20px; right: 20px;">
+    <button id="login-btn" style="padding: 8px 16px; background-color: #b62d71; color: white; border: none; border-radius: 5px; cursor: pointer;">
+      Login
+    </button>
+    <button id="logout-btn" style="padding: 8px 16px; background-color: #ccc; color: black; border: none; border-radius: 5px; cursor: pointer; display: none;">
+      Logout
+    </button>
+  </div>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <!-- Banner Carousel -->
+    <div id="banner">
+      <div class="banner-images">
+        <img src="./banner1.png" alt="Banner 1" />
+        <img src="./banner2.png" alt="Banner 2" />
+        <img src="./banner3.png" alt="Banner 3" />
+        <img src="./banner4.png" alt="Banner 4" />
+        <img src="./banner5.png" alt="Banner 5" />
+        <!-- Repeating for smooth looping -->
+        <img src="./banner1.png" alt="Banner 1 Repeat" />
+        <img src="./banner2.png" alt="Banner 2 Repeat" />
+        <img src="./banner3.png" alt="Banner 3 Repeat" />
+        <img src="./banner4.png" alt="Banner 4 Repeat" />
+        <img src="./banner5.png" alt="Banner 5 Repeat" />
+      </div>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="hero-content">
+      <h1 id="hero-welcome" style="color: #b62d71;">Welcome to Blush & Basics</h1>
+      <p style="color: #b62d71;">Your one-stop for beauty💄, skincare🧴🧼, and fashion essentials🩰</p>
+      <a href="product.html" class="btn-primary" id="shop-now-btn">Shop Now</a>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section id="categories">
+    <h2 id="categories-heading">Browse Categories</h2>
+    <div class="category">
+      <img src="./skincare.jpg" alt="Skincare" />
+      <div class="category-info">Skincare</div>
+    </div>
+    <div class="category">
+      <img src="./makeup.jpg" alt="Makeup" />
+      <div class="category-info">Makeup</div>
+    </div>
+    <div class="category">
+      <img src="./clothing.jpg" alt="Clothing" />
+      <div class="category-info">Clothing</div>
+    </div>
+    <div class="category">
+      <img src="./accessories.jpg" alt="Accessories" />
+      <div class="category-info">Accessories</div>
+    </div>
+  </section>
+
+  <!-- Firebase Auth Script -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCY0SCWTEzv1S7l-JGUfz2itgSZQ4Tewds",
+      authDomain: "blush-andbasics.firebaseapp.com",
+      projectId: "blush-andbasics",
+      storageBucket: "blush-andbasics.firebasestorage.app",
+      messagingSenderId: "1045987661646",
+      appId: "1:1045987661646:web:fde8e488cbd67b4de4b01f",
+      measurementId: "G-KVRKCDYZS4"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+
+    const loginBtn = document.getElementById("login-btn");
+    const logoutBtn = document.getElementById("logout-btn");
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        loginBtn.style.display = "none";
+        logoutBtn.style.display = "inline-block";
+      } else {
+        loginBtn.style.display = "inline-block";
+        logoutBtn.style.display = "none";
+      }
+    });
+
+    loginBtn.addEventListener("click", () => {
+      window.location.href = "login.html";
+    });
+
+    logoutBtn.addEventListener("click", () => {
+      signOut(auth).then(() => {
+        alert("You have been logged out.");
+        window.location.reload();
+      });
+    });
+  </script>
+
+</body>
+</html>

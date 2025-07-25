@@ -12,9 +12,15 @@
   <!-- Logo -->
   <img src="./logo.png" alt="Blush & Basics Logo" id="logo"/>
 
+  <!-- Auth Buttons -->
+  <div class="auth-buttons">
+    <button id="loginBtn">Login</button>
+    <button id="logoutBtn" style="display: none;">Logout</button>
+    <p id="user-info"></p>
+  </div>
+
   <!-- Hero Section -->
   <section id="hero">
-
     <!-- Banner Carousel -->
     <div id="banner">
       <div class="banner-images">
@@ -23,12 +29,8 @@
         <img src="./banner3.png" alt="Banner 3" />
         <img src="./banner4.png" alt="Banner 4" />
         <img src="./banner5.png" alt="Banner 5" />
-        <!-- Repeating for smooth looping -->
-        <img src="./banner1.png" alt="Banner 1 Repeat" />
-        <img src="./banner2.png" alt="Banner 2 Repeat" />
-        <img src="./banner3.png" alt="Banner 3 Repeat" />
-        <img src="./banner4.png" alt="Banner 4 Repeat" />
-        <img src="./banner5.png" alt="Banner 5 Repeat" />
+        <img src="./banner1.png" alt="Repeat 1" />
+        <img src="./banner2.png" alt="Repeat 2" />
       </div>
     </div>
 
@@ -40,26 +42,52 @@
     </div>
   </section>
 
-  <!-- Categories Section -->
+  <!-- Categories -->
   <section id="categories">
     <h2 id="categories-heading">Browse Categories</h2>
-    <div class="category">
-      <img src="./skincare.jpg" alt="Skincare" />
-      <div class="category-info">Skincare</div>
-    </div>
-    <div class="category">
-      <img src="./makeup.jpg" alt="Makeup" />
-      <div class="category-info">Makeup</div>
-    </div>
-    <div class="category">
-      <img src="./clothing.jpg" alt="Clothing" />
-      <div class="category-info">Clothing</div>
-    </div>
-    <div class="category">
-      <img src="./accessories.jpg" alt="Accessories" />
-      <div class="category-info">Accessories</div>
-    </div>
+    <div class="category"><img src="./skincare.jpg" alt="Skincare"><div class="category-info">Skincare</div></div>
+    <div class="category"><img src="./makeup.jpg" alt="Makeup"><div class="category-info">Makeup</div></div>
+    <div class="category"><img src="./clothing.jpg" alt="Clothing"><div class="category-info">Clothing</div></div>
+    <div class="category"><img src="./accessories.jpg" alt="Accessories"><div class="category-info">Accessories</div></div>
   </section>
 
+  <!-- Firebase Auth Setup -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, signInWithPopup, signOut, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCY0SCWTEzv1S7l-JGUfz2itgSZQ4Tewds",
+      authDomain: "blush-andbasics.firebaseapp.com",
+      projectId: "blush-andbasics",
+      storageBucket: "blush-andbasics.appspot.com",
+      messagingSenderId: "1045987661646",
+      appId: "1:1045987661646:web:fde8e488cbd67b4de4b01f",
+      measurementId: "G-KVRKCDYZS4"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    const loginBtn = document.getElementById("loginBtn");
+    const logoutBtn = document.getElementById("logoutBtn");
+    const userInfo = document.getElementById("user-info");
+
+    loginBtn.onclick = () => signInWithPopup(auth, provider).catch(e => alert("Login failed: " + e.message));
+    logoutBtn.onclick = () => signOut(auth);
+
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        loginBtn.style.display = "none";
+        logoutBtn.style.display = "inline-block";
+        userInfo.textContent = `Logged in as: ${user.displayName}`;
+      } else {
+        loginBtn.style.display = "inline-block";
+        logoutBtn.style.display = "none";
+        userInfo.textContent = "";
+      }
+    });
+  </script>
 </body>
 </html>

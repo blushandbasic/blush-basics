@@ -11,7 +11,7 @@ body {
 }
 
 #hero {
-  background-image: url('images/hero-image.jpg');
+  background-image: url('./hero-image.jpg');
   background-size: cover;
   text-align: center;
   color: white;

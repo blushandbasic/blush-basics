@@ -1,57 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Products - Blush & Basics</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Basic reset for product page */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fdb8e2;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    #logo {
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    #products {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    #products h2 {
+      color: #b62d71;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+    }
+
+    /* Product grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    /* Individual product card */
+    .product {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgb(182 45 113 / 0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgb(182 45 113 / 0.3);
+    }
+
+    .product img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin-bottom: 15px;
+    }
+
+    .product-info h3 {
+      color: #b62d71;
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+    }
+
+    .product-info p {
+      margin: 5px 0;
+    }
+
+    .product-info p.price {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+    }
+
+    /* Buy button */
+    .product-info button {
+      background-color: #b62d71;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .product-info button:hover {
+      background-color: #9a235b;
+    }
+
+    @media (max-width: 480px) {
+      .product img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Logo in the Top Left Corner -->
-  <img src="./logo.png" alt="Blush & Basics Logo" id="logo">
+  <!-- Logo -->
+  <img src="./logo.png" alt="Blush & Basics Logo" id="logo" />
 
   <!-- Products Section -->
   <section id="products">
     <h2>Our Best Products</h2>
-
-    <!-- Product 1 -->
-    <div class="product">
-      <img src="./product1.jpg" alt="Product 1" width = 200>
-      <div class="product-info">
-        <h3>Hydrating Serum</h3>
-        <p>Deep moisturizing serum for dry skin.</p>
-        <p>₹211</p>
-        <button onclick="window.location.href='https://www.amazon.in/Lakme-Vitamin-Niacinamide-Pro-Ceramides-improved/dp/B0CB3P89GQ/ref=sr_1_3_sspa?crid=MCOMWSIPUWU&dib=eyJ2IjoiMSJ9.BStW1szldRmH6ut0DNidkvWcgARESAKjOID-8xm_ZOOS_LsRv5utnyLCLXNKoqmnTZSYdi6RruqJcOVKh6ELJGF9kyPYTj9pVSA153pdHYt60R5fkvrqYmIIU9lQmADyt5JJwE_sRpsekd7kdV39Lki3-FOMghvsqlumM1X3p9L6GCrsbuIgL_Ty8h0y2pEy-rAMyuntOKgBfywruVQsLDLVzn05wwOefhKoKvI5Z7sWRkBf4dywVYP2GGJ5Y7MCk1Ye4g-1Ztb2KgxWaEB4gYJ1sMVd4id3YzjeckcAOms.XEbmRgNf1ANOPYLlhepPecSYdgergCEnNpp7pZttBB0&dib_tag=se&keywords=hydrating%2Bserum%2Bfor%2Bdry%2Bskin&qid=1753435383&sprefix=hydrating%2Bserum%2Caps%2C292&sr=8-3-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1'">Buy Now</button>
+    <div class="products-grid">
+      <!-- Product 1 -->
+      <div class="product" data-category="skincare">
+        <img src="./product1.jpg" alt="Hydrating Serum" />
+        <div class="product-info">
+          <h3>Hydrating Serum</h3>
+          <p>Deep moisturizing serum for dry skin.</p>
+          <p class="price">₹211</p>
+          <button onclick="window.location.href='https://www.amazon.in/Lakme-Vitamin-Niacinamide-Pro-Ceramides-improved/dp/B0CB3P89GQ/ref=sr_1_3_sspa'">Buy Now</button>
+        </div>
       </div>
-    </div>
 
-    <!-- Product 2 -->
-    <div class="product">
-      <img src="./product2.jpg" alt="Product 2" width = 200>
-      <div class="product-info">
-        <h3>Matte Lipstick</h3>
-        <p>Flenc Ritzy Liquid Glossy Lipstick.</p>
-        <p>₹637</p>
-        <button onclick="window.location.href='https://www.amazon.com'">Buy Now</button>
+      <!-- Product 2 -->
+      <div class="product" data-category="makeup">
+        <img src="./product2.jpg" alt="Matte Lipstick" />
+        <div class="product-info">
+          <h3>Matte Lipstick</h3>
+          <p>Flenc Ritzy Liquid Glossy Lipstick.</p>
+          <p class="price">₹637</p>
+          <button onclick="window.location.href='https://www.amazon.com'">Buy Now</button>
+        </div>
       </div>
-    </div>
 
-    <!-- Product 3 -->
-    <div class="product">
-      <img src="./product3.jpg" alt="Product 3" width = 200>
-      <div class="product-info">
-        <h3>Compact Powder</h3>
-        <p>Compact powder for smooth finish.</p>
-        <p>$15</p>
-        <button onclick="window.location.href='https://www.amazon.com'">Buy Now</button>
+      <!-- Product 3 -->
+      <div class="product" data-category="makeup">
+        <img src="./product3.jpg" alt="Compact Powder" />
+        <div class="product-info">
+          <h3>Compact Powder</h3>
+          <p>Compact powder for smooth finish.</p>
+          <p class="price">$15</p>
+          <button onclick="window.location.href='https://www.amazon.com'">Buy Now</button>
+        </div>
       </div>
-    </div>
 
-    <!-- Add more products as needed -->
-    
+      <!-- Add more products here with appropriate data-category -->
+    </div>
   </section>
 
-  <script src="script.js"></script>
+  <script>
+    // Helper to get URL parameter
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    // Filter products by category param
+    window.addEventListener('DOMContentLoaded', () => {
+      const category = getQueryParam('category');
+      const products = document.querySelectorAll('.product');
+
+      if (category) {
+        products.forEach(product => {
+          if (product.dataset.category === category) {
+            product.style.display = 'flex'; // show
+          } else {
+            product.style.display = 'none'; // hide
+          }
+        });
+      } else {
+        // no category param - show all
+        products.forEach(product => product.style.display = 'flex');
+      }
+    });
+  </script>
+
 </body>
 </html>

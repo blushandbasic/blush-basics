@@ -70,3 +70,10 @@ body {
   font-weight: bold;
   border-radius: 5px;
 }
+
+document.getElementById('search-button').addEventListener('click', function () {
+  const query = document.getElementById('search-input').value.toLowerCase();
+  alert('Search not yet connected! You searched for: ' + query);
+  // Future: Filter products on product.html
+});
+

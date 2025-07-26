@@ -133,9 +133,9 @@ header {
 }
 
 #profile-pic {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 2px solid #b62d71;
+  height: 34px;          /* same height as buttons */
+  width: 34px;
+  border-radius: 50%;    /* round */
   object-fit: cover;
+  vertical-align: middle;
 }

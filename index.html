@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blush & Basics</title>
-  <link rel="icon" type="image/png" href="./logo.png">
+  <link rel="icon" type="image/png" href="./logo.png" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -49,10 +49,30 @@
   <!-- Categories -->
   <section id="categories">
     <h2 id="categories-heading">Browse Categories</h2>
-    <div class="category"><img src="./skincare.jpg" alt="Skincare"><div class="category-info">Skincare</div></div>
-    <div class="category"><img src="./makeup.jpg" alt="Makeup"><div class="category-info">Makeup</div></div>
-    <div class="category"><img src="./clothing.jpg" alt="Clothing"><div class="category-info">Clothing</div></div>
-    <div class="category"><img src="./accessories.jpg" alt="Accessories"><div class="category-info">Accessories</div></div>
+    <div class="category">
+      <a href="product.html?category=skincare">
+        <img src="./skincare.jpg" alt="Skincare" />
+        <div class="category-info">Skincare</div>
+      </a>
+    </div>
+    <div class="category">
+      <a href="product.html?category=makeup">
+        <img src="./makeup.jpg" alt="Makeup" />
+        <div class="category-info">Makeup</div>
+      </a>
+    </div>
+    <div class="category">
+      <a href="product.html?category=clothing">
+        <img src="./clothing.jpg" alt="Clothing" />
+        <div class="category-info">Clothing</div>
+      </a>
+    </div>
+    <div class="category">
+      <a href="product.html?category=accessories">
+        <img src="./accessories.jpg" alt="Accessories" />
+        <div class="category-info">Accessories</div>
+      </a>
+    </div>
   </section>
 
   <!-- Firebase Auth Setup -->
@@ -96,14 +116,16 @@
         if (user.photoURL) {
           profilePic.src = user.photoURL;
         } else {
-          profilePic.src = "images/default-profile.png"; // Optional fallback
+          profilePic.src = "./default-profile.png";
         }
 
         profilePicContainer.style.display = "inline-block";
+        userInfo.textContent = "";
       } else {
         loginBtn.style.display = "inline-block";
         logoutBtn.style.display = "none";
         profilePicContainer.style.display = "none";
+        userInfo.textContent = "";
       }
     });
   </script>

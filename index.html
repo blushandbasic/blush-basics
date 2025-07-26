@@ -15,6 +15,9 @@
     <div class="auth-buttons">
       <button id="loginBtn">Login</button>
       <button id="logoutBtn" style="display: none;">Logout</button>
+      <div id="profile-pic-container" style="display: none;">
+        <img id="profile-pic" src="" alt="Profile" />
+      </div>
       <button id="settingsBtn">☰</button>
       <p id="user-info"></p>
     </div>
@@ -74,18 +77,34 @@
     const loginBtn = document.getElementById("loginBtn");
     const logoutBtn = document.getElementById("logoutBtn");
     const userInfo = document.getElementById("user-info");
+    const profilePicContainer = document.getElementById("profile-pic-container");
+    const profilePic = document.getElementById("profile-pic");
 
-    loginBtn.onclick = () => signInWithPopup(auth, provider).catch(e => alert("Login failed: " + e.message));
-    logoutBtn.onclick = () => signOut(auth);
+    loginBtn.onclick = () =>
+      signInWithPopup(auth, provider).catch((e) =>
+        alert("Login failed: " + e.message)
+      );
 
-    onAuthStateChanged(auth, user => {
+    logoutBtn.onclick = () =>
+      signOut(auth).catch((e) => alert("Logout failed: " + e.message));
+
+    onAuthStateChanged(auth, (user) => {
       if (user) {
         loginBtn.style.display = "none";
         logoutBtn.style.display = "inline-block";
-        userInfo.textContent = `Logged in as: ${user.displayName}`;
+
+        if (user.photoURL) {
+          profilePic.src = user.photoURL;
+        } else {
+          profilePic.src = "images/default-profile.png"; // Optional fallback
+        }
+
+        profilePicContainer.style.display = "inline-block";
+        userInfo.textContent = "";
       } else {
         loginBtn.style.display = "inline-block";
         logoutBtn.style.display = "none";
+        profilePicContainer.style.display = "none";
         userInfo.textContent = "";
       }
     });

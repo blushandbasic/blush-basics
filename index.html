@@ -33,6 +33,27 @@
   </div>
 </header>
 
+<!-- Settings Panel -->
+<div id="settingsPanel" aria-hidden="true" role="complementary" aria-label="Settings panel">
+
+  <div class="settings-section">
+    <h3>Categories <span class="arrow-text">▼</span></h3>
+    <div class="category-buttons">
+      <button class="settings-button" onclick="location.href='product.html?category=skincare'">Skincare</button>
+      <button class="settings-button" onclick="location.href='product.html?category=makeup'">Makeup</button>
+      <button class="settings-button" onclick="location.href='product.html?category=clothing'">Clothing</button>
+      <button class="settings-button" onclick="location.href='product.html?category=accessories'">Accessories</button>
+    </div>
+  </div>
+
+  <div class="settings-section">
+    <h3>My Account</h3>
+    <button class="settings-button" id="accountBtn">Profile / Settings</button>
+  </div>
+
+  <button id="contactBtn" onclick="window.open('https://pin.it/5V0uV1d6K', '_blank')">Contact Us</button>
+</div>
+
 <!-- Hero Section -->
 <section id="hero">
   <!-- Banner Carousel -->
@@ -144,6 +165,27 @@
     const query = document.getElementById('search-input').value.trim();
     if(query.length > 0){
       window.location.href = `product.html?search=${encodeURIComponent(query)}`;
+    }
+  });
+
+  // Settings panel toggle
+  const settingsBtn = document.getElementById("settingsBtn");
+  const settingsPanel = document.getElementById("settingsPanel");
+
+  settingsBtn.addEventListener("click", () => {
+    const isOpen = settingsPanel.classList.toggle("open");
+    settingsPanel.setAttribute("aria-hidden", !isOpen);
+  });
+
+  // Close settings panel on outside click
+  document.addEventListener("click", (e) => {
+    if (
+      !settingsPanel.contains(e.target) &&
+      e.target !== settingsBtn &&
+      settingsPanel.classList.contains("open")
+    ) {
+      settingsPanel.classList.remove("open");
+      settingsPanel.setAttribute("aria-hidden", "true");
     }
   });
 </script>

@@ -155,27 +155,39 @@
   </section>
 
   <script>
-    // Helper to get URL parameter
+    // Helper to get URL parameters
     function getQueryParam(param) {
       const urlParams = new URLSearchParams(window.location.search);
       return urlParams.get(param);
     }
 
-    // Filter products by category param
+    // Filter products by search or category param
     window.addEventListener('DOMContentLoaded', () => {
+      const search = getQueryParam('search');
       const category = getQueryParam('category');
       const products = document.querySelectorAll('.product');
 
-      if (category) {
+      if (search) {
+        const searchLower = search.toLowerCase();
         products.forEach(product => {
-          if (product.dataset.category === category) {
+          const name = product.querySelector('h3').textContent.toLowerCase();
+          const cat = product.dataset.category.toLowerCase();
+          if (name.includes(searchLower) || cat.includes(searchLower)) {
             product.style.display = 'flex'; // show
           } else {
             product.style.display = 'none'; // hide
           }
         });
+      } else if (category) {
+        products.forEach(product => {
+          if (product.dataset.category === category) {
+            product.style.display = 'flex';
+          } else {
+            product.style.display = 'none';
+          }
+        });
       } else {
-        // no category param - show all
+        // no param - show all
         products.forEach(product => product.style.display = 'flex');
       }
     });

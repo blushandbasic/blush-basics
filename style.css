@@ -5,9 +5,10 @@
   box-sizing: border-box;
 }
 
+/* Body & general */
 body {
   font-family: Arial, sans-serif;
-  background-color:#fdb8e2;
+  background-color: #fdb8e2;
   color: #333;
 }
 
@@ -39,6 +40,7 @@ header {
   padding: 8px 12px;
   border-radius: 8px;
   cursor: pointer;
+  font-size: 1rem;
 }
 
 #settingsBtn {
@@ -56,6 +58,7 @@ header {
   background: #fff0f5;
 }
 
+/* Banner */
 #banner {
   overflow: hidden;
   width: 100%;
@@ -76,6 +79,7 @@ header {
   100% { transform: translateX(-200%); }
 }
 
+/* Hero Content */
 .hero-content {
   margin-top: 20px;
 }
@@ -112,6 +116,11 @@ header {
   vertical-align: top;
 }
 
+.category a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .category img {
   width: 100%;
   height: auto;
@@ -128,14 +137,15 @@ header {
   transform: scale(1.05);
 }
 
+/* Profile pic next to logout */
 #profile-pic-container {
   display: inline-block;
 }
 
 #profile-pic {
-  height: 34px;          /* same height as buttons */
+  height: 34px;
   width: 34px;
-  border-radius: 50%;    /* round */
+  border-radius: 50%;
   object-fit: cover;
   vertical-align: middle;
 }

@@ -7,7 +7,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #fff0f5;
+  background-color:#fdb8e2;
   color: #333;
 }
 
@@ -126,4 +126,16 @@ header {
 
 .category:hover {
   transform: scale(1.05);
+}
+
+#profile-pic-container {
+  display: inline-block;
+}
+
+#profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #b62d71;
+  object-fit: cover;
 }

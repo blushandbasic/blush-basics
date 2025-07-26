@@ -20,161 +20,67 @@ header {
   padding: 10px 20px;
 }
 
+/* Container for logo, site name, and search form */
+#logo-text-container {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* space between logo, text & search */
+}
+
 #logo {
   height: 60px;
   width: 60px;
   border-radius: 50%;
 }
 
-/* Auth Buttons */
-.auth-buttons {
+#site-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: black;
+  font-family: 'Georgia', serif;
+  user-select: none;
+}
+
+/* Search container - input + button */
+#search-container {
   display: flex;
   align-items: center;
-  gap: 10px;
+  margin-left: 15px; /* space from logo/site name */
 }
 
-.auth-buttons button {
-  background-color: #b62d71;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-#settingsBtn {
-  font-size: 20px;
-  background: none;
-  border: none;
-  color: #b62d71;
-  cursor: pointer;
-}
-
-/* Hero Section */
-#hero {
-  text-align: center;
-  padding: 40px 20px;
-  background: #fff0f5;
-}
-
-/* Banner */
-#banner {
-  overflow: hidden;
-  width: 100%;
-}
-
-.banner-images {
-  display: flex;
-  animation: scrollBanner 30s linear infinite;
-}
-
-.banner-images img {
-  width: 100vw;
-  max-width: 100%;
-}
-
-@keyframes scrollBanner {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-200%); }
-}
-
-/* Hero Content */
-.hero-content {
-  margin-top: 20px;
-}
-
-#shop-now-btn {
-  background-color: #b62d71;
-  color: white;
+/* Search input styling */
+#search-input {
   padding: 10px 20px;
-  border-radius: 20px;
-  text-decoration: none;
-  display: inline-block;
-  margin-top: 15px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 30px 0 0 30px;
+  outline: none;
+  width: 300px; /* long bar */
+  background-color: white;
+  box-shadow: 0 0 5px rgba(182, 45, 113, 0.4);
+  transition: box-shadow 0.3s ease;
 }
 
-/* Categories Section */
-#categories {
-  padding: 40px 20px;
-  text-align: center;
-  background-color: #fff0f5;
+#search-input:focus {
+  box-shadow: 0 0 8px rgba(182, 45, 113, 0.8);
 }
 
-#categories-heading {
-  font-size: 2rem;
-  margin-bottom: 30px;
-  color: #b62d71;
-}
-
-.category {
-  display: inline-block;
-  margin: 10px;
-  width: 150px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  vertical-align: top;
-}
-
-.category a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.category img {
-  width: 100%;
-  height: auto;
-  border-radius: 15px;
-}
-
-.category-info {
-  margin-top: 10px;
-  font-weight: bold;
-  color: #b62d71;
-}
-
-.category:hover {
-  transform: scale(1.05);
-}
-
-/* Profile pic next to logout */
-#profile-pic-container {
-  display: inline-block;
-}
-
-#profile-pic {
-  height: 34px;
-  width: 34px;
-  border-radius: 50%;
-  object-fit: cover;
-  vertical-align: middle;
-}
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Body & general */
-body {
-  font-family: Arial, sans-serif;
+/* Search button styling */
+#search-button {
   background-color: #fdb8e2;
+  border: none;
+  padding: 10px 25px;
+  font-size: 1rem;
   color: #333;
+  font-weight: bold;
+  border-radius: 0 30px 30px 0;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(182, 45, 113, 0.4);
+  transition: background-color 0.3s ease;
 }
 
-/* Header */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-}
-
-#logo {
-  height: 60px;
-  width: 60px;
-  border-radius: 50%;
+#search-button:hover {
+  background-color: #e69ccf;
 }
 
 /* Auth Buttons */
@@ -299,18 +205,4 @@ header {
   border-radius: 50%;
   object-fit: cover;
   vertical-align: middle;
-}
-/* Remove blue underline/focus highlight under category images */
-.category a {
-  text-decoration: none;
-  outline: none;
-}
-
-.category a:focus,
-.category a:hover,
-.category img:focus,
-.category img:hover {
-  text-decoration: none;
-  outline: none;
-  border: none;
 }

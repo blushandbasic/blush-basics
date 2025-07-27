@@ -10,7 +10,6 @@ body {
   font-family: Arial, sans-serif;
   background-color: #fdb8e2;
   color: #333;
-  overflow-x: hidden;
 }
 
 /* Header */
@@ -21,7 +20,6 @@ header {
   padding: 10px 20px;
   flex-wrap: wrap;
   gap: 10px;
-  max-width: 100%;
 }
 
 /* Container for logo, site name, and search form */
@@ -29,8 +27,6 @@ header {
   display: flex;
   align-items: center;
   gap: 15px;
-  flex-wrap: wrap;
-  max-width: 100%;
 }
 
 #logo {
@@ -45,7 +41,6 @@ header {
   color: black;
   font-family: 'Georgia', serif;
   user-select: none;
-  white-space: nowrap;
 }
 
 /* Search container - input + button */
@@ -55,7 +50,6 @@ header {
   margin-left: 15px;
   flex: 1 1 300px;
   max-width: 500px;
-  width: 100%;
 }
 
 /* Search input styling */
@@ -87,7 +81,6 @@ header {
   cursor: pointer;
   box-shadow: 0 0 5px rgba(182, 45, 113, 0.4);
   transition: background-color 0.3s ease;
-  white-space: nowrap;
 }
 
 #search-button:hover {
@@ -122,7 +115,7 @@ header {
   cursor: pointer;
 }
 
-/* Settings Panel Styles */
+/* Settings Panel */
 #settingsPanel {
   position: fixed;
   top: 0;
@@ -132,6 +125,7 @@ header {
   background-color: #fff0f5;
   box-shadow: -3px 0 10px rgba(182, 45, 113, 0.3);
   padding: 20px;
+  box-sizing: border-box;
   transition: right 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -176,7 +170,6 @@ header {
   background-color: #9a235b;
 }
 
-/* Category buttons container to indent sub-buttons */
 .category-buttons {
   margin-left: 12px;
 }
@@ -197,7 +190,6 @@ header {
   user-select: none;
 }
 
-/* Contact Us button at bottom */
 #contactBtn {
   position: sticky;
   bottom: 0;
@@ -263,7 +255,7 @@ header {
   margin-top: 15px;
 }
 
-/* Categories Section */
+/* Categories */
 #categories {
   padding: 40px 20px;
   text-align: center;
@@ -306,7 +298,7 @@ header {
   transform: scale(1.05);
 }
 
-/* Profile pic next to logout */
+/* Profile Picture */
 #profile-pic-container {
   display: inline-block;
 }
@@ -319,7 +311,7 @@ header {
   vertical-align: middle;
 }
 
-/* Responsive adjustments */
+/* Responsive Breakpoints */
 @media (max-width: 768px) {
   header {
     flex-wrap: wrap;
@@ -334,7 +326,7 @@ header {
 
   #search-container {
     flex: 1 1 100%;
-    max-width: 100%;
+    max-width: 90%;
     margin-left: 0;
   }
 
@@ -355,29 +347,24 @@ header {
     font-size: 1.2rem;
   }
 
+  #search-container {
+    max-width: 250px;
+    flex: none;
+    margin: 0 auto;
+  }
+
   #search-input {
-    padding: 8px 15px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
   }
 
   #search-button {
-    padding: 8px 15px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
   }
 
   .settings-button {
     font-size: 0.9rem;
     padding: 10px 15px;
-  }
-
-  #search-container {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  #search-button {
-    border-radius: 0 0 30px 30px;
-  }
-
-  #search-input {
-    border-radius: 30px 30px 0 0;
   }
 }

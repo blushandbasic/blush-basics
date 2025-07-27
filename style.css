@@ -112,7 +112,7 @@ header {
 #settingsPanel {
   position: fixed;
   top: 0;
-  right: -280px; /* hidden by default */
+  right: -280px;
   width: 280px;
   height: 100vh;
   background-color: #fff0f5;
@@ -122,9 +122,12 @@ header {
   transition: right 0.3s ease;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   z-index: 9999;
+
+  overflow-y: auto;      /* ✅ enables vertical scrolling */
+  scroll-behavior: smooth;
 }
+
 
 #settingsPanel.open {
   right: 0;

@@ -10,6 +10,7 @@ body {
   font-family: Arial, sans-serif;
   background-color: #fdb8e2;
   color: #333;
+  overflow-x: hidden;
 }
 
 /* Header */
@@ -20,13 +21,16 @@ header {
   padding: 10px 20px;
   flex-wrap: wrap;
   gap: 10px;
+  max-width: 100%;
 }
 
 /* Container for logo, site name, and search form */
 #logo-text-container {
   display: flex;
   align-items: center;
-  gap: 15px; /* space between logo, text & search */
+  gap: 15px;
+  flex-wrap: wrap;
+  max-width: 100%;
 }
 
 #logo {
@@ -41,15 +45,17 @@ header {
   color: black;
   font-family: 'Georgia', serif;
   user-select: none;
+  white-space: nowrap;
 }
 
 /* Search container - input + button */
 #search-container {
   display: flex;
   align-items: center;
-  margin-left: 15px; /* space from logo/site name */
+  margin-left: 15px;
   flex: 1 1 300px;
   max-width: 500px;
+  width: 100%;
 }
 
 /* Search input styling */
@@ -59,7 +65,7 @@ header {
   border: none;
   border-radius: 30px 0 0 30px;
   outline: none;
-  width: 100%; /* fill container */
+  width: 100%;
   background-color: white;
   box-shadow: 0 0 5px rgba(182, 45, 113, 0.4);
   transition: box-shadow 0.3s ease;
@@ -81,6 +87,7 @@ header {
   cursor: pointer;
   box-shadow: 0 0 5px rgba(182, 45, 113, 0.4);
   transition: background-color 0.3s ease;
+  white-space: nowrap;
 }
 
 #search-button:hover {
@@ -119,18 +126,17 @@ header {
 #settingsPanel {
   position: fixed;
   top: 0;
-  right: -280px; /* hidden by default */
+  right: -280px;
   width: 280px;
   height: 100vh;
   background-color: #fff0f5;
   box-shadow: -3px 0 10px rgba(182, 45, 113, 0.3);
   padding: 20px;
-  box-sizing: border-box;
   transition: right 0.3s ease;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* changed from space-between */
-  overflow-y: auto; /* enable vertical scrolling */
+  justify-content: flex-start;
+  overflow-y: auto;
   z-index: 9999;
 }
 
@@ -184,7 +190,6 @@ header {
   background-color: #c575a3;
 }
 
-/* Replace down arrow text style */
 .arrow-text {
   font-weight: bold;
   margin-left: 6px;
@@ -361,5 +366,18 @@ header {
   .settings-button {
     font-size: 0.9rem;
     padding: 10px 15px;
+  }
+
+  #search-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #search-button {
+    border-radius: 0 0 30px 30px;
+  }
+
+  #search-input {
+    border-radius: 30px 30px 0 0;
   }
 }

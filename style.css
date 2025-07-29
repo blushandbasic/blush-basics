@@ -516,3 +516,55 @@ header {
     flex-wrap: wrap;
   }
 }
+
+.add-to-cart-btn {
+  background-color: #fdb8e2;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #fba6d5;
+}
+
+.cart-btn {
+  background-color: #fdb8e2;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  margin-left: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#view-cart-btn {
+  background-color: #fdb8e2;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  margin-left: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#view-cart-btn:hover {
+  background-color: #fba6d5;
+}
+
+.add-to-cart-btn {
+  background-color: #fdb8e2;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #fba6d5;
+}

@@ -7,6 +7,7 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
+const db = firebase.firestore();
 
 // Auth state change UI update
 auth.onAuthStateChanged(user => {
@@ -139,3 +140,43 @@ if (viewCartBtn) {
     }
   });
 }
+
+// Load and display all products
+function loadProducts(filterCategory = null) {
+  const productContainer = document.getElementById("product-list");
+  if (!productContainer) return;
+
+  productContainer.innerHTML = "";
+  db.collection("products").get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+
+      if (filterCategory && data.category !== filterCategory) return;
+
+      const productCard = document.createElement("div");
+      productCard.classList.add("product-card");
+
+      productCard.innerHTML = `
+        <img src="${data.image}" alt="${data.title}" />
+        <h3>${data.title}</h3>
+        <p class="price">${data.price}</p>
+        <button class="buy-now-btn">Buy Now</button>
+        <button class="add-to-cart-btn">Add to Cart</button>
+      `;
+
+      productContainer.appendChild(productCard);
+    });
+  });
+}
+
+loadProducts();
+
+// Link settings panel category buttons to filter products
+const categoryButtons = document.querySelectorAll(".settings-button[data-category]");
+categoryButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const selectedCategory = button.getAttribute("data-category");
+    loadProducts(selectedCategory);
+    settingsPanel.classList.remove("open");
+  });
+});

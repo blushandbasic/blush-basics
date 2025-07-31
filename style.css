@@ -568,3 +568,7 @@ header {
 .add-to-cart-btn:hover {
   background-color: #fba6d5;
 }
+
+#profileDropdown {
+  display: none;
+}

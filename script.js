@@ -1,62 +1,99 @@
-// Firebase config (keep your actual config here)
+// Firebase config (replace with your actual config)
 const firebaseConfig = {
   apiKey: "YOUR_API_KEY",
   authDomain: "YOUR_AUTH_DOMAIN",
   // ... rest of config
 };
 
-// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
-// Update UI on auth change
+// Auth state change UI update
 auth.onAuthStateChanged(user => {
   const loginBtn = document.getElementById("loginBtn");
   const logoutBtn = document.getElementById("logoutBtn");
   const userNameDisplay = document.getElementById("userName");
   const profilePic = document.getElementById("profile-pic");
 
+  // Settings panel profile elements
+  const profileDropdownPic = document.getElementById("profileDropdownPic");
+  const profileDropdownName = document.getElementById("profileDropdownName");
+
   if (user) {
-    loginBtn.style.display = "none";
-    logoutBtn.style.display = "inline-block";
-    if (userNameDisplay) {
-      userNameDisplay.textContent = user.displayName || "Logged In";
+    if (loginBtn) loginBtn.style.display = "none";
+    if (logoutBtn) logoutBtn.style.display = "inline-block";
+    if (userNameDisplay) userNameDisplay.textContent = user.displayName || "Logged In";
+    if (profilePic && user.photoURL) profilePic.src = user.photoURL;
+
+    // Update settings panel profile
+    if (profileDropdownPic && user.photoURL) {
+      profileDropdownPic.src = user.photoURL;
     }
-    if (profilePic && user.photoURL) {
-      profilePic.src = user.photoURL;
+    if (profileDropdownName) {
+      profileDropdownName.textContent = user.displayName || "My Account";
     }
   } else {
-    loginBtn.style.display = "inline-block";
-    logoutBtn.style.display = "none";
-    if (userNameDisplay) {
-      userNameDisplay.textContent = "";
+    if (loginBtn) loginBtn.style.display = "inline-block";
+    if (logoutBtn) logoutBtn.style.display = "none";
+    if (userNameDisplay) userNameDisplay.textContent = "";
+    if (profilePic) profilePic.src = "default-profile.png";
+
+    // Reset settings panel profile
+    if (profileDropdownPic) {
+      profileDropdownPic.src = "default-profile.png";
     }
-    if (profilePic) {
-      profilePic.src = "default-profile.png"; // fallback image
+    if (profileDropdownName) {
+      profileDropdownName.textContent = "";
     }
   }
 });
 
 // Login
-document.getElementById("loginBtn").addEventListener("click", () => {
-  const provider = new firebase.auth.GoogleAuthProvider();
-  auth.signInWithPopup(provider);
-});
+const loginBtn = document.getElementById("loginBtn");
+if (loginBtn) {
+  loginBtn.addEventListener("click", () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider);
+  });
+}
 
 // Logout
-document.getElementById("logoutBtn").addEventListener("click", () => {
-  auth.signOut();
-});
+const logoutBtn = document.getElementById("logoutBtn");
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", () => auth.signOut());
+}
 
-// ========== Settings Panel ==========
+// Profile Logout (from inside settings panel)
+const profileLogoutBtn = document.getElementById("profileLogoutBtn");
+if (profileLogoutBtn) {
+  profileLogoutBtn.addEventListener("click", () => {
+    auth.signOut();
+    const profileDropdown = document.getElementById("profileDropdown");
+    if (profileDropdown) profileDropdown.style.display = "none";
+  });
+}
+
+// Settings Panel Toggle
 const settingsBtn = document.getElementById("settingsBtn");
 const settingsPanel = document.getElementById("settingsPanel");
+if (settingsBtn && settingsPanel) {
+  settingsBtn.addEventListener("click", () => {
+    settingsPanel.classList.toggle("open");
+  });
+}
 
-settingsBtn.addEventListener("click", () => {
-  settingsPanel.classList.toggle("open");
-});
+// Toggle profile dropdown inside settings
+const accountBtn = document.getElementById("accountBtn");
+const profileDropdown = document.getElementById("profileDropdown");
 
-// ========== Cart Logic ==========
+if (accountBtn && profileDropdown) {
+  accountBtn.addEventListener("click", () => {
+    const isVisible = profileDropdown.style.display === "block";
+    profileDropdown.style.display = isVisible ? "none" : "block";
+  });
+}
+
+// Cart Logic
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 function addToCart(product) {
@@ -65,28 +102,40 @@ function addToCart(product) {
   alert("Item added to cart!");
 }
 
-// Attach add-to-cart click listener
+// Listen for Add to Cart clicks
 document.addEventListener("click", function (e) {
   if (e.target && e.target.classList.contains("add-to-cart-btn")) {
     const productCard = e.target.closest(".product-card");
-    const title = productCard.querySelector("h3").innerText;
-    const price = productCard.querySelector(".price").innerText;
-    const image = productCard.querySelector("img").src;
+    if (!productCard) return;
 
-    const product = { title, price, image };
-    addToCart(product);
+    const titleEl = productCard.querySelector("h3");
+    const priceEl = productCard.querySelector(".price");
+    const imgEl = productCard.querySelector("img");
+
+    if (titleEl && priceEl && imgEl) {
+      const product = {
+        title: titleEl.innerText,
+        price: priceEl.innerText,
+        image: imgEl.src,
+      };
+      addToCart(product);
+    }
   }
 });
 
-// View Cart button
+// View Cart button logic
 const viewCartBtn = document.getElementById("view-cart-btn");
 if (viewCartBtn) {
   viewCartBtn.addEventListener("click", () => {
     const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-    let cartList = "Your Cart:\n\n";
-    cartItems.forEach((item, index) => {
-      cartList += `${index + 1}. ${item.title} - ${item.price}\n`;
-    });
-    alert(cartList || "Cart is empty!");
+    if (cartItems.length === 0) {
+      alert("Cart is empty!");
+    } else {
+      let cartList = "Your Cart:\n\n";
+      cartItems.forEach((item, i) => {
+        cartList += `${i + 1}. ${item.title} - ${item.price}\n`;
+      });
+      alert(cartList);
+    }
   });
 }

@@ -31,10 +31,12 @@
   </div>
 
   <div id="header-right">
-    <div id="search-container">
-      <input type="text" id="search-input" placeholder="Search products..." />
-      <button id="search-button">Search</button>
-    </div>
+   <div id="search-container" style="position: relative;">
+    <input type="search" id="search-input" placeholder="Search products..." style="padding-right: 30px;" />
+    <button id="search-button">Search</button>
+    <button id="clear-search" aria-label="Clear search" title="Clear search" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: transparent; border: none; font-size: 20px; cursor: pointer; display: none; z-index: 10;">×</button>
+  </div>
+
     <div class="auth-buttons">
       <button id="loginBtn">Login</button>
       <button id="logoutBtn" style="display: none;">Logout</button>
@@ -43,8 +45,9 @@
       </div>
 
       <!-- ✅ Cart Button added here -->
-      <button id="view-cart-btn">🛒 Cart</button>
-
+      <button id="view-cart-btn">
+        🛒 Cart (<span id="cart-count"> 0 </span>)
+      </button>
       <button id="settingsBtn">☰</button>
     </div>
   </div>

@@ -167,28 +167,21 @@
   <button id="contactBtn" onclick="window.open('https://pin.it/5V0uV1d6K', '_blank')">Contact Us</button>
 </div>
 
-<!-- Hero Section -->
+<!-- Hero Section with single video banner -->
 <section id="hero">
-  <!-- Banner Carousel -->
-  <div id="banner">
-    <div class="banner-images">
-      <img src="./banner1.png" alt="Banner 1" />
-      <img src="./banner2.png" alt="Banner 2" />
-      <img src="./banner3.png" alt="Banner 3" />
-      <img src="./banner4.png" alt="Banner 4" />
-      <img src="./banner5.png" alt="Banner 5" />
-      <img src="./banner1.png" alt="Repeat 1" />
-      <img src="./banner2.png" alt="Repeat 2" />
-    </div>
-  </div>
-
-  <!-- Hero Content -->
-  <div class="hero-content">
-    <h1 id="hero-welcome" style="color: #b62d71;">Welcome to Blush & Basics </h1>
-    <p style="color: #b62d71;">Your one-stop for beauty💄, skincare🧴🧼, and fashion essentials🩰</p>
-    <a href="product.html" class="btn-primary" id="shop-now-btn">Shop Now</a>
-  </div>
+  <video autoplay muted loop playsinline id="hero-video">
+    <source src="./banner.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
 </section>
+
+<!-- Hero Content below video -->
+<div class="hero-content">
+  <h1 id="hero-welcome" style="color: #b62d71;">Welcome to Blush & Basics</h1>
+  <p style="color: #b62d71;">Your one-stop for beauty💄, skincare🧴🧼, and fashion essentials🩰</p>
+  <a href="product.html" class="btn-primary" id="shop-now-btn">Shop Now</a>
+</div>
+
 
 <!-- Categories -->
 <section id="categories">

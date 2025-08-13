@@ -231,37 +231,26 @@ header {
   background-color: #9a235b;
 }
 
-/* Hero Section */
+/* Hero Video Banner */
 #hero {
-  text-align: center;
-  padding: 40px 20px;
-  background: #fff0f5;
-}
-
-/* Banner */
-#banner {
-  overflow: hidden;
   width: 100%;
+  height: auto;        /* video height adjusts naturally */
+  overflow: hidden;
 }
 
-.banner-images {
-  display: flex;
-  animation: scrollBanner 30s linear infinite;
+#hero video {
+  width: 100%;
+  height: auto;        /* keep aspect ratio */
+  display: block;
+  object-fit: cover;   /* fill horizontally */
 }
 
-.banner-images img {
-  width: 100vw;
-  max-width: 100%;
+/* Hero text below the banner */
+.hero-content {
+  text-align: center;
+  padding: 30px 20px;  /* space above and below text */
 }
 
-@keyframes scrollBanner {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-200%);
-  }
-}
 
 /* Hero Content */
 .hero-content {

@@ -27,8 +27,12 @@ auth.onAuthStateChanged(user => {
     if (loginBtn) loginBtn.style.display = "none";
     if (logoutBtn) logoutBtn.style.display = "inline-block";
     if (userNameDisplay) userNameDisplay.textContent = user.displayName || "Logged In";
-    if (profilePic && user.photoURL) profilePic.src = user.photoURL;
-    if (profileDropdownPic && user.photoURL) profileDropdownPic.src = user.photoURL;
+
+    // Always set profile pics, fallback if photoURL is missing
+    const photo = user.photoURL || "default-profile.png";
+    if (profilePic) profilePic.src = photo;
+    if (profileDropdownPic) profileDropdownPic.src = photo;
+
     if (profileDropdownName) profileDropdownName.textContent = user.displayName || "My Account";
   } else {
     if (loginBtn) loginBtn.style.display = "inline-block";
@@ -93,17 +97,13 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 /* Update cart UI in navbar and any cart-count spans */
 function updateCartCountUI() {
   const count = cart.length;
-  // update element with id cart-count (span)
   const cartCountSpan = document.getElementById("cart-count");
   if (cartCountSpan) {
     cartCountSpan.textContent = count;
   }
-  // update view-cart-btn text if present
   const viewCartBtn = document.getElementById("view-cart-btn");
   if (viewCartBtn) {
-    // preserve href if it's an <a>
     if (viewCartBtn.tagName.toLowerCase() === "a") {
-      // If viewCartBtn has a child span with id cart-count, leave it and only update that span.
       const innerSpan = viewCartBtn.querySelector("#cart-count");
       if (innerSpan) {
         innerSpan.textContent = count;
@@ -113,11 +113,8 @@ function updateCartCountUI() {
     } else {
       viewCartBtn.textContent = `Cart(${count})`;
     }
-    // Ensure clicking always navigates to cart page
     if (!viewCartBtn.getAttribute("href")) viewCartBtn.setAttribute("href", "cart.html");
-    // Also add fallback click handler
     viewCartBtn.addEventListener("click", (ev) => {
-      // If it's a button, use location
       if (viewCartBtn.tagName.toLowerCase() !== "a") {
         window.location.href = "cart.html";
       }
@@ -151,7 +148,6 @@ function addProductToCart(product, button) {
   const id = product.id || product.title;
   const exists = cart.some(it => it.id === id || it.title === product.title);
   if (exists) {
-    // Already there — ensure UI shows Remove
     setButtonToRemove(button);
     saveCart();
     return;
@@ -184,7 +180,6 @@ function syncButtonsWithCart() {
     const inCart = cart.some(it => it.id === prodId || it.title === (card.querySelector("h3")?.innerText || "").trim());
     if (inCart) setButtonToRemove(btn);
     else setButtonToAdd(btn);
-    // ensure data-id exists on button for robust identification
     if (!btn.dataset.id && card.dataset.id) btn.dataset.id = card.dataset.id;
   });
 }
@@ -192,7 +187,6 @@ function syncButtonsWithCart() {
 /* Event delegation for Add / Remove buttons */
 document.addEventListener("click", (e) => {
   const target = e.target;
-  // Add to cart
   if (target && target.classList.contains("add-to-cart-btn")) {
     const card = target.closest(".product-card");
     if (!card) return;
@@ -203,7 +197,6 @@ document.addEventListener("click", (e) => {
     addProductToCart({ id, title, price, image }, target);
     return;
   }
-  // Remove from cart
   if (target && target.classList.contains("remove-from-cart-btn")) {
     const card = target.closest(".product-card");
     if (!card) return;
@@ -214,7 +207,6 @@ document.addEventListener("click", (e) => {
 });
 
 /* --- Ensure buttons are correct after Firestore product load --- */
-/* Load products from Firestore (keeps your original behavior but ensures data-id + sync) */
 function loadProducts(filterCategory = null) {
   const productContainer = document.getElementById("product-list");
   if (!productContainer) return;
@@ -246,7 +238,6 @@ function loadProducts(filterCategory = null) {
       productContainer.appendChild(productCard);
     });
 
-    // after rendering all products, sync buttons
     syncButtonsWithCart();
   }).catch(e => {
     console.error("Error loading products:", e);
@@ -255,40 +246,31 @@ function loadProducts(filterCategory = null) {
 
 /* Initial UI sync on DOM ready */
 document.addEventListener("DOMContentLoaded", () => {
-  // ensure cart UI reflects localStorage
   cart = JSON.parse(localStorage.getItem("cart")) || [];
   updateCartCountUI();
-
-  // if product list exists on DOM already, sync buttons (if products were rendered server-side)
   syncButtonsWithCart();
 
-  // Search input handlers
   const searchInput = document.getElementById('search-input');
   const clearSearchBtn = document.getElementById('clear-search');
 
   if (searchInput && clearSearchBtn) {
-    // Show clear button only if input has value
     searchInput.addEventListener('input', () => {
       clearSearchBtn.style.display = searchInput.value.length > 0 ? 'inline' : 'none';
     });
 
-    // Clear input and hide clear button on click
     clearSearchBtn.addEventListener('click', () => {
       searchInput.value = '';
       clearSearchBtn.style.display = 'none';
       searchInput.focus();
     });
 
-    // Initialize clear button display on page load
     clearSearchBtn.style.display = searchInput.value.length > 0 ? 'inline' : 'none';
   }
 });
 
-
 /* Redirect cart button to cart.html (fallback) */
 const viewCartBtn = document.getElementById("view-cart-btn");
 if (viewCartBtn) {
-  // ensure it has an href so a normal click works
   if (viewCartBtn.tagName.toLowerCase() === "a" && !viewCartBtn.getAttribute("href")) viewCartBtn.setAttribute("href", "cart.html");
   viewCartBtn.addEventListener("click", (e) => {
     if (viewCartBtn.tagName.toLowerCase() !== "a") {

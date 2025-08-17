@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const profileDropdownObserver = new MutationObserver(() => {
       const user = auth.currentUser;
       if (!user) return;
-      const photo = user.photoURL || "default-profile.png";
+      const photo = user.photoURL || "default-profile.jpg";
       const profileDropdownPic = document.getElementById("profileDropdownPic");
       if (profileDropdownPic) profileDropdownPic.src = photo;
     });
@@ -309,3 +309,4 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 }); // End DOMContentLoaded
+

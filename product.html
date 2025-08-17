@@ -8,9 +8,11 @@
   <!-- Favicon: show your logo in browser tab -->
   <link rel="icon" href="logo.png" type="image/png" />
   <link rel="shortcut icon" href="logo.png" type="image/png" />
-
+  
   <link rel="stylesheet" href="style.css" />
   <style>
+
+    
     /* Basic reset for product page */
     body {
       font-family: Arial, sans-serif;
@@ -180,6 +182,14 @@ if (viewCartBtn) {
   <div id="navbar-placeholder"></div>
   <!-- Logo -->
   <img src="./logo.png" alt="Blush & Basics Logo" id="logo" />
+
+  <label for="sortPrice">Sort by Price:</label>
+  <select id="sortPrice">
+    <option value="default">Default</option>
+    <option value="lowToHigh">Low to High</option>
+    <option value="highToLow">High to Low</option>
+  </select>
+
 
   <!-- Products Section -->
   <section id="products">

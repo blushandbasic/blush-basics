@@ -81,14 +81,29 @@ if (settingsBtn && settingsPanel) {
   });
 }
 
-// --- Profile dropdown toggle inside settings ---
 const accountBtn = document.getElementById("accountBtn");
 const profileDropdown = document.getElementById("profileDropdown");
+
 if (accountBtn && profileDropdown) {
   accountBtn.addEventListener("click", () => {
+    // toggle panel
     profileDropdown.style.display = profileDropdown.style.display === "block" ? "none" : "block";
+
+    // update profile pic & name when panel opens
+    const user = auth.currentUser;
+    if (user) {
+      const photo = user.photoURL || "default-profile.png";
+      const name = user.displayName || "User";
+
+      const profileDropdownPic = document.getElementById("profileDropdownPic");
+      const profileDropdownName = document.getElementById("profileDropdownName");
+
+      if (profileDropdownPic) profileDropdownPic.src = photo;
+      if (profileDropdownName) profileDropdownName.textContent = name;
+    }
   });
 }
+
 
 // --- Ensure settings panel profile pic updates dynamically ---
 const profileDropdownObserver = new MutationObserver(() => {

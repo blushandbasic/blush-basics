@@ -23,23 +23,26 @@ auth.onAuthStateChanged(user => {
   const profileDropdownPic = document.getElementById("profileDropdownPic");
   const profileDropdownName = document.getElementById("profileDropdownName");
 
+  const photo = (user && user.photoURL) ? user.photoURL : "default-profile.png";
+  const displayName = (user && user.displayName) ? user.displayName : "User";
+
   if (user) {
     if (loginBtn) loginBtn.style.display = "none";
     if (logoutBtn) logoutBtn.style.display = "inline-block";
-    if (userNameDisplay) userNameDisplay.textContent = user.displayName || "Logged In";
+    if (userNameDisplay) userNameDisplay.textContent = displayName;
 
-    // Always set profile pics, fallback if photoURL is missing
-    const photo = user.photoURL || "default-profile.png";
     if (profilePic) profilePic.src = photo;
     if (profileDropdownPic) profileDropdownPic.src = photo;
 
-    if (profileDropdownName) profileDropdownName.textContent = user.displayName || "My Account";
+    if (profileDropdownName) profileDropdownName.textContent = displayName;
   } else {
     if (loginBtn) loginBtn.style.display = "inline-block";
     if (logoutBtn) logoutBtn.style.display = "none";
     if (userNameDisplay) userNameDisplay.textContent = "";
+
     if (profilePic) profilePic.src = "default-profile.png";
     if (profileDropdownPic) profileDropdownPic.src = "default-profile.png";
+
     if (profileDropdownName) profileDropdownName.textContent = "";
   }
 });
@@ -85,6 +88,18 @@ if (accountBtn && profileDropdown) {
   accountBtn.addEventListener("click", () => {
     profileDropdown.style.display = profileDropdown.style.display === "block" ? "none" : "block";
   });
+}
+
+// --- Ensure settings panel profile pic updates dynamically ---
+const profileDropdownObserver = new MutationObserver(() => {
+  const user = auth.currentUser;
+  if (!user) return;
+  const photo = user.photoURL || "default-profile.png";
+  const profileDropdownPic = document.getElementById("profileDropdownPic");
+  if (profileDropdownPic) profileDropdownPic.src = photo;
+});
+if (profileDropdown) {
+  profileDropdownObserver.observe(profileDropdown, { attributes: true, childList: true, subtree: true });
 }
 
 /* ============================

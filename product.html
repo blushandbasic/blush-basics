@@ -45,8 +45,22 @@
     /* Product grid */
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns:  repeat(4, 1fr); /* 4 per row on desktop */
       gap: 30px;
+    }
+
+    /* Tablet */
+    @media (max-width: 992px) {
+      .products-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 per row */
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 per row */
+      }
     }
 
     /* Individual product card */
@@ -2508,6 +2522,25 @@ if (viewCartBtn) {
         </div>
       </div>
 
+
+
+
+
+
+
+
+
+      <!-- Product  -->
+       <div class="product" data-category="skincare" data-subcategory="lip-balms">
+        <img src="./product.jpg" alt="Lip-Balms" />
+        <div class="product-info">
+          <h3></h3>
+          <p></p>
+          <p class="price">₹</p>
+          <button onclick="window.location.href=''">Buy Now</button>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
 
     </div>
   </section>

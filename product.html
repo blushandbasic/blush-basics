@@ -180,6 +180,56 @@ if (viewCartBtn) {
 
 <body>
   <div id="navbar-placeholder"></div>
+  <!-- Fetch and load navbar -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      fetch('navbar.html')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Navbar file not found or path incorrect");
+          }
+          return response.text();
+        })
+        .then(data => {
+          document.getElementById('navbar-placeholder').innerHTML = data;
+
+          // Initialize navbar functions (login, logout, search, cart)
+          initNavbarFunctions();
+        })
+        .catch(err => console.error('Error loading navbar:', err));
+
+      function initNavbarFunctions() {
+        // Example: get buttons
+        const loginBtn = document.getElementById('loginBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const signupBtn = document.getElementById('signupBtn');
+        const cartBtn = document.getElementById('cartBtn');
+        const searchBtn = document.getElementById('searchBtn');
+
+        // Add event listeners (replace with your Firebase functions)
+        loginBtn?.addEventListener('click', () => {
+          // Firebase login code
+          console.log("Login clicked");
+        });
+
+        logoutBtn?.addEventListener('click', () => {
+          // Firebase logout code
+          console.log("Logout clicked");
+        });
+
+        cartBtn?.addEventListener('click', () => {
+          console.log("Cart clicked");
+        });
+
+        searchBtn?.addEventListener('click', () => {
+          const query = document.getElementById('searchBar').value;
+          console.log("Search:", query);
+        });
+      }
+    });
+  </script>
+
+
   <!-- Logo -->
   <img src="./logo.png" alt="Blush & Basics Logo" id="logo" />
 

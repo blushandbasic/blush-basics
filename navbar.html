@@ -1,22 +1,23 @@
+<!-- Header -->
 <header>
-  <div class="logo-container">
-    <img src="logo.png" alt="Blush & Basics Logo" class="logo" />
-    <span class="site-name">Blush & Basics</span>
+  <div id="header-left">
+    <img src="./logo.png" alt="Blush & Basics Logo" id="logo" />
+    <span id="site-name">Blush & Basics</span>
   </div>
 
-  <div class="search-container">
-    <input type="text" id="searchBar" placeholder="Search products..." />
-    <button id="searchBtn">Search</button>
+  <div id="header-right">
+   <div id="search-container" style="position: relative;">
+    <input type="search" id="search-input" placeholder="Search products..." style="padding-right: 30px;" />
+    <button id="search-button">Search</button>
+    <button id="clear-search" aria-label="Clear search" title="Clear search" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: transparent; border: none; font-size: 20px; cursor: pointer; display: none; z-index: 10;">×</button>
   </div>
 
-  <div class="auth-buttons">
-    <button id="loginBtn">Login</button>
-    <button id="logoutBtn" style="display:none;">Logout</button>
-    <span id="userName" style="display:none;"></span>
-    <img id="userPhoto" src="" alt="Profile Photo" style="display:none;" />
-    <button id="view-cart-btn">Cart 🛒 (<span id="cart-count">0</span>)</button>
-    <button id="settingsBtn">☰</button>
-  </div>
+    <div class="auth-buttons">
+      <button id="loginBtn">Login</button>
+      <button id="logoutBtn" style="display: none;">Logout</button>
+      <div id="profile-pic-container" style="display: none;">
+        <img id="profile-pic" src="default-avatar.png" alt="Profile" />
+      </div>
 
   <!-- Settings panel (collapsible) -->
   <div id="settingsPanel" style="display:none;">

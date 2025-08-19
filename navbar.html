@@ -1,13 +1,34 @@
-<nav>
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="product.html">Products</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li><a href="about.html">About</a></li>
-    <li>
-      <button id="view-cart-btn" style="cursor:pointer;">
-        Cart(<span id="cart-count">0</span>)
-      </button>
-    </li>
-  </ul>
-</nav>
+<header>
+  <div class="logo-container">
+    <img src="logo.png" alt="Blush & Basics Logo" class="logo" />
+    <span class="site-name">Blush & Basics</span>
+  </div>
+
+  <div class="search-container">
+    <input type="text" id="searchBar" placeholder="Search products..." />
+    <button id="searchBtn">Search</button>
+  </div>
+
+  <div class="auth-buttons">
+    <button id="loginBtn">Login</button>
+    <button id="signupBtn">Signup</button>
+    <button id="logoutBtn" style="display:none;">Logout</button>
+    <span id="userName" style="display:none;"></span>
+    <img id="userPhoto" src="" alt="Profile Photo" style="display:none;" />
+    <button id="cartBtn">Cart 🛒 (<span id="cart-count">0</span>)</button>
+    <button id="settingsBtn">☰</button>
+  </div>
+
+  <!-- Settings panel (collapsible) -->
+  <div id="settingsPanel" style="display:none;">
+    <h3>Categories</h3>
+    <button class="categoryBtn">Skin Care</button>
+    <button class="categoryBtn">Make Up</button>
+    <button class="categoryBtn">Clothing</button>
+    <button class="categoryBtn">Accessories</button>
+
+    <h3>Profile / Account</h3>
+    <button id="profileBtn">Profile</button>
+    <button id="logoutSettingsBtn">Logout</button>
+  </div>
+</header>

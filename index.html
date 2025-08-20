@@ -74,7 +74,7 @@
   </div>
 </header>
 
-<a href="https://pin.it/65EDljIgp" target="_blank" class="contact-pinterest-btn">
+<a href="https://pin.it/65EDljIgp" target="_blank" class="follow-pinterest-btn">
   Follow Me on Pinterest
 </a>
 
@@ -167,10 +167,17 @@
     </div>
   </div>
 
+    <div class="settings-section">
+    <h3>ABAYAS<span class="arrow-text">▼</span></h3>
+    <div class="category-buttons">
+      <button class="settings-button" onclick="location.href='product.html?category=abayas&subcategory=abayas'">Abayas</button>
+    </div>
+  </div>
+
   <div class="settings-section">
     <h3>HIJABS<span class="arrow-text">▼</span></h3>
     <div class="category-buttons">
-      <button class="settings-button" onclick="location.href='product.html?category=hijabss&subcategory=hijabs'">Hijabs</button>
+      <button class="settings-button" onclick="location.href='product.html?category=hijabs&subcategory=hijabs'">Hijabs</button>
     </div>
   </div>
 
@@ -183,6 +190,7 @@
       <button class="settings-button" onclick="location.href='product.html?category=accessories&subcategory=claw-clips'">Claw clips</button>
       <button class="settings-button" onclick="location.href='product.html?category=accessories&subcategory=jewellery'">Jewellery</button>
       <button class="settings-button" onclick="location.href='product.html?category=accessories&subcategory=sunglasses'">Sunglasses</button>
+      <button class="settings-button" onclick="location.href='product.html?category=accessories&subcategory=hijab-magnets'">Hijab magnets</button>
   </div>
 </div>
 
@@ -193,21 +201,20 @@
     <!-- Profile Dropdown -->
     <div id="profileDropdown">
       <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-        <img id="profileDropdownPic" src="" alt="Profile Pic" style="height: 50px; width: 50px; border-radius: 50%; object-fit: cover;" />
+        <img id="profileDropdownPic" src="default-avatar.png" alt="Profile Pic" style="height: 50px; width: 50px; border-radius: 50%; object-fit: cover;" />
         <div id="profileDropdownName" style="font-weight: bold; color: #b62d71;"></div>
       </div>
       <button id="profileLogoutBtn" style="width: 100%; background-color: #b62d71; color: white; border: none; border-radius: 20px; padding: 10px; cursor: pointer;">Logout</button>
     </div>
   </div>
 
-  <button id="contactBtn" onclick="window.open('https://pin.it/5V0uV1d6K', '_blank')">Follow Me</button>
+  <button id="followBtn" onclick="window.open('https://pin.it/5V0uV1d6K', '_blank')">Follow Me</button>
 </div>
 
 <!-- Hero Section with single video banner -->
 <section id="hero">
   <video autoplay muted loop playsinline id="hero-video">
     <source src="./Banner.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
   </video>
 </section>
 
@@ -396,4 +403,3 @@ s0.parentNode.insertBefore(s1,s0);
 
 </body>
 </html>
-

@@ -199,9 +199,11 @@
     <button class="settings-button" id="accountBtn">Profile / Settings</button>
 
     <!-- Profile Dropdown -->
-    <div id="profile-pic-container">
+    <div id="profileDropdown">
       <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-        <img id="profile-pic" src="default-avatar.png" alt="Profile Pic" style="height: 50px; width: 50px; border-radius: 50%; object-fit: cover;" />
+        <div id = "profile-pic-container">
+          <img id="profile-pic" src="default-avatar.png" alt="Profile Pic" style="height: 50px; width: 50px; border-radius: 50%; object-fit: cover;" />
+        </div>
         <div id="profileDropdownName" style="font-weight: bold; color: #b62d71;"></div>
       </div>
       <button id="profileLogoutBtn" style="width: 100%; background-color: #b62d71; color: white; border: none; border-radius: 20px; padding: 10px; cursor: pointer;">Logout</button>
